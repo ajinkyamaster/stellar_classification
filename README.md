@@ -47,19 +47,12 @@ Out-of-fold predictions from the three base models were used as meta-features fo
 
 ```
 .
-├── notebooks/
-│   └── stellar_classification.ipynb   # Full pipeline: EDA → features → training → stacking
-├── src/
-│   ├── features.py                    # Feature engineering (cyclical encoding, target encoding)
-│   ├── train_base_models.py           # LightGBM / CatBoost / XGBoost training + Optuna tuning
-│   └── stack.py                       # OOF meta-feature generation + stacking classifier
-├── models/                            # Saved base model artifacts
-├── submission.csv                     # Final Kaggle submission
-├── requirements.txt
+├── stellar_class.ipynb        # Full pipeline: EDA → feature engineering → base models → Optuna tuning → stacking
+├── l2_regularized_update.csv  # Final Kaggle submission (predictions)
 └── README.md
 ```
 
-*(Adjust the tree above to match your actual file layout once everything is pushed from Colab.)*
+Everything — EDA, feature engineering, base model training, Optuna hyperparameter search, and the final stacking ensemble — lives in the single notebook.
 
 ## Tech Stack
 
@@ -68,12 +61,12 @@ Python · LightGBM · CatBoost · XGBoost · Optuna · Scikit-learn · Pandas ·
 ## Setup & Reproduction
 
 ```bash
-git clone https://github.com/ajinkyamaster/stellar-classification.git
-cd stellar-classification
-pip install -r requirements.txt
+git clone https://github.com/ajinkyamaster/stellar_classification.git
+cd stellar_classification
+pip install lightgbm catboost xgboost optuna scikit-learn pandas numpy
 ```
 
-Run the full pipeline via the notebook in `notebooks/`, or the individual scripts in `src/` in order: feature engineering → base model training → stacking.
+Open `stellar_class.ipynb` in Jupyter or Google Colab and run the cells top to bottom. The notebook covers the full pipeline end-to-end and produces `l2_regularized_update.csv` as the final submission.
 
 ## Competition
 
